@@ -1,7 +1,7 @@
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { useEffect } from "react";
 import Historys from "./pages/Historys";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -16,7 +16,6 @@ import MainLayout from "./pages/MainLayout";
 import Banner from "./components/Home/Banner";
 
 const theme = createTheme({
-  // để đây cần thì xài
   palette: {
     primary: {
       main: "rgb(67, 150, 233)",
@@ -28,12 +27,16 @@ const theme = createTheme({
 });
 
 function App() {
+  // Thêm code debug để kiểm tra lỗi
+  useEffect(() => {
+    console.log("App mounted");
+    console.log("Current URL:", window.location.href);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* // Sử dụng HashRouter */}
-
-      <Router basename="/50-nam-giai-phong-135-nam-ngay-sinh-bac-ho">
+      <Router>
         <Header />
         <Navbar />
         <Routes>
