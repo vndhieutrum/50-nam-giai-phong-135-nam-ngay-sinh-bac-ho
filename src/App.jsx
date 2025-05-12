@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Historys from "./pages/Historys";
@@ -30,7 +31,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      {/* // Sử dụng HashRouter */}
+
+      <Router basename="/50-nam-giai-phong-135-nam-ngay-sinh-bac-ho">
         <Header />
         <Navbar />
         <Routes>
