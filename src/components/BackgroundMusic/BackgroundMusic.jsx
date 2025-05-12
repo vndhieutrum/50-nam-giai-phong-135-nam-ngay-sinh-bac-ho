@@ -43,36 +43,53 @@ const BackgroundMusic = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Khởi tạo audio element
-    const audio = new Audio();
+    let isMounted = true;
 
-    // Sử dụng đường dẫn tương đối từ thư mục public
-    audio.src = "./nhacNen.mp3";
+    const initAudio = async () => {
+      try {
+        // Khởi tạo audio element
+        const audio = new Audio();
+        audio.src = "./nhacNen.mp3";
+        audio.volume = 0.3;
+        audio.loop = true;
+        audio.preload = "auto";
 
-    // Xử lý lỗi khi tải audio
-    audio.onerror = (e) => {
-      console.error("Error loading audio:", e);
-      setAudioError(true);
-    };
+        // Xử lý lỗi khi tải audio
+        audio.onerror = (e) => {
+          console.error("Error loading background music:", e);
+          if (isMounted) {
+            setAudioError(true);
+          }
+        };
 
-    // Xử lý khi audio đã sẵn sàng
-    audio.oncanplaythrough = () => {
-      console.log("Audio is ready to play");
-      audioRef.current = audio;
-      audio.volume = 0.3;
-      audio.loop = true;
-    };
+        // Xử lý khi audio đã sẵn sàng
+        audio.oncanplaythrough = () => {
+          console.log("Background music is ready to play");
+          if (isMounted) {
+            audioRef.current = audio;
+          }
+        };
 
-    // Load trạng thái từ localStorage
-    const savedMuted = localStorage.getItem("musicMuted");
-    if (savedMuted !== null) {
-      setIsMuted(savedMuted === "true");
-      if (audioRef.current) {
-        audioRef.current.muted = savedMuted === "true";
+        // Load trạng thái từ localStorage
+        const savedMuted = localStorage.getItem("musicMuted");
+        if (savedMuted !== null && isMounted) {
+          setIsMuted(savedMuted === "true");
+          if (audioRef.current) {
+            audioRef.current.muted = savedMuted === "true";
+          }
+        }
+      } catch (error) {
+        console.error("Error initializing audio:", error);
+        if (isMounted) {
+          setAudioError(true);
+        }
       }
-    }
+    };
+
+    initAudio();
 
     return () => {
+      isMounted = false;
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -100,20 +117,31 @@ const BackgroundMusic = () => {
 
   const handleToggle = () => {
     if (audioRef.current) {
-      if (isMuted) {
-        audioRef.current.muted = false;
-        setIsMuted(false);
-        localStorage.setItem("musicMuted", "false");
-      } else {
-        audioRef.current.muted = true;
-        setIsMuted(true);
-        localStorage.setItem("musicMuted", "true");
-      }
+      const newMutedState = !isMuted;
+      audioRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+      localStorage.setItem("musicMuted", newMutedState.toString());
     }
   };
 
+  // Expose method to pause background music
+  const pauseBackgroundMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  // Add method to window object for external access
+  useEffect(() => {
+    window.pauseBackgroundMusic = pauseBackgroundMusic;
+    return () => {
+      delete window.pauseBackgroundMusic;
+    };
+  }, []);
+
   if (audioError) {
-    return null; // Không hiển thị gì nếu có lỗi
+    return null;
   }
 
   if (showPlayButton) {
