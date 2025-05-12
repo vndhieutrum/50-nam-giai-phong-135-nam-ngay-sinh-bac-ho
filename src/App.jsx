@@ -14,7 +14,7 @@ import QuizHistory from "./pages/QuizHistory";
 
 import MainLayout from "./pages/MainLayout";
 import Banner from "./components/Home/Banner";
-
+import BackgroundMusic from "./components/BackgroundMusic/BackgroundMusic";
 const theme = createTheme({
   palette: {
     primary: {
@@ -86,6 +86,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
+      <BackgroundMusic />
       <BackToTopButton />
     </ThemeProvider>
   );
