@@ -24,8 +24,6 @@ Website được xây dựng nhằm kỷ niệm 50 năm thống nhất đất n�
 
 ## Công nghệ sử dụng
 
-{0C06F0C4-E8EF-43C5-9923-4CF478FC410A}.png
-
 - **Frontend Framework**: React.js
 - **UI Framework**: Material-UI (MUI), Bootstrap
 - **Animation**: Framer Motion
