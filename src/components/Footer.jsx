@@ -129,7 +129,7 @@ const Footer = () => {
                   },
                   {
                     to: "/quiz-history",
-                    text: "Đố vui lịch sử",
+                    text: "Đố Vui Lịch Sử",
                     icon: <QuizIcon sx={{ mr: 1, fontSize: 20 }} />,
                   },
                 ].map((link, index) => (
