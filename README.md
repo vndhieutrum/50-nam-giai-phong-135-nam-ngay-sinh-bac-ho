@@ -6,6 +6,8 @@
 
 # <h2 align="center"><a href="">Click me</a></h2>
 
+![alt text]({FA7F0B4A-7768-4A09-8996-74ECDAFC7046}.png)
+
 ## Mô tả
 
 Website được xây dựng nhằm kỷ niệm 50 năm thống nhất đất nước, tái hiện lại những khoảnh khắc lịch sử quan trọng và ý nghĩa của sự kiện này. Dự án không chỉ là một nền tảng thông tin mà còn là một công cụ giáo dục, giúp thế hệ trẻ hiểu rõ hơn về lịch sử dân tộc và tầm quan trọng của sự kiện thống nhất đất nước.
@@ -34,7 +36,8 @@ Website được xây dựng nhằm kỷ niệm 50 năm thống nhất đất n�
 ## Hướng dẫn cài đặt và chạy dự án
 
 ### Yêu cầu hệ thống
-- Node.js 
+
+- Node.js
 - npm hoặc yarn
 
 ### Các bước cài đặt
