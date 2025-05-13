@@ -11,6 +11,7 @@ import EventPage from "./pages/EventPage";
 import BackToTopButton from "./components/rightSideBar/BackToTop";
 import Navbar from "./components/Navbar";
 import QuizHistory from "./pages/QuizHistory";
+import ScrollToTop from "./components/ScrollToTop";
 
 import MainLayout from "./pages/MainLayout";
 import Banner from "./components/Home/Banner";
@@ -37,6 +38,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <ScrollToTop />
         <Header />
         <Navbar />
         <Routes>
