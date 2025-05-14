@@ -113,11 +113,6 @@ const Footer = () => {
                     icon: <HomeIcon sx={{ mr: 1, fontSize: 20 }} />,
                   },
                   {
-                    to: "/history",
-                    text: "Con Đường Độc Lập",
-                    icon: <HistoryIcon sx={{ mr: 1, fontSize: 20 }} />,
-                  },
-                  {
                     to: "/about",
                     text: "Góc Tự Hào",
                     icon: <EmojiEventsIcon sx={{ mr: 1, fontSize: 20 }} />,
@@ -128,8 +123,14 @@ const Footer = () => {
                     icon: <EventIcon sx={{ mr: 1, fontSize: 20 }} />,
                   },
                   {
+                    to: "/history",
+                    text: "Con Đường Độc Lập",
+                    icon: <HistoryIcon sx={{ mr: 1, fontSize: 20 }} />,
+                  },
+
+                  {
                     to: "/quiz-history",
-                    text: "Đố Vui Lịch Sử",
+                    text: "Đố vui lịch sử",
                     icon: <QuizIcon sx={{ mr: 1, fontSize: 20 }} />,
                   },
                 ].map((link, index) => (
