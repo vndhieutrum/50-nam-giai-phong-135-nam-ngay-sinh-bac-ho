@@ -30,7 +30,7 @@ const History = () => {
   };
 
   return (
-    <Container className="py-5">
+    <Container className="py-2">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
