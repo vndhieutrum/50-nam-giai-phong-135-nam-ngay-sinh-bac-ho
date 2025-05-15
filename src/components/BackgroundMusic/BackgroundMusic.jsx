@@ -129,9 +129,25 @@ const BackgroundMusic = () => {
     }
   };
 
+  // Expose method to start background music
+  const startBackgroundMusic = () => {
+    if (audioRef.current) {
+      const savedMuted = localStorage.getItem("musicMuted");
+      if (savedMuted === "false") {
+        audioRef.current.muted = false;
+        setIsMuted(false);
+        audioRef.current.play().catch((error) => {
+          console.log("Error resuming background music:", error);
+          setShowPlayButton(true);
+        });
+      }
+    }
+  };
+
   // Add method to window object for external access
   useEffect(() => {
     window.pauseBackgroundMusic = pauseBackgroundMusic;
+    window.startBackgroundMusic = startBackgroundMusic;
 
     // Thêm event listener cho sự kiện visibilitychange để dừng/phát nhạc khi chuyển tab
     const handleVisibilityChange = () => {
@@ -165,6 +181,7 @@ const BackgroundMusic = () => {
 
     return () => {
       delete window.pauseBackgroundMusic;
+      delete window.startBackgroundMusic;
       document.removeEventListener("click", handleUserInteraction);
       document.removeEventListener("touchstart", handleUserInteraction);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
